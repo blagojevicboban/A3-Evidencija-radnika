@@ -316,7 +316,7 @@
             this.buttonIzadji.TabIndex = 7;
             this.buttonIzadji.Text = "Izađi";
             this.buttonIzadji.UseVisualStyleBackColor = true;
-            this.buttonIzadji.Click += new System.EventHandler(this.button4_Click);
+            this.buttonIzadji.Click += new System.EventHandler(this.buttonIzadji_Click);
             // 
             // buttonPrikazi
             // 
@@ -330,7 +330,7 @@
             this.buttonPrikazi.TabIndex = 7;
             this.buttonPrikazi.Text = "Prikaži";
             this.buttonPrikazi.UseVisualStyleBackColor = true;
-            this.buttonPrikazi.Click += new System.EventHandler(this.button3_Click);
+            this.buttonPrikazi.Click += new System.EventHandler(this.buttonPrikazi_Click);
             // 
             // chart1
             // 

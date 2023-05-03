@@ -197,7 +197,7 @@ namespace ZadatakA1
             this.Close();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonIzadji_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -237,18 +237,19 @@ namespace ZadatakA1
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonPrikazi_Click(object sender, EventArgs e)
         {
             if(comboBoxCitalac.Text  != "")
             {
                 SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = @"
-SELECT CONCAT(c.Ime, ' ', c.Prezime) AS 'Citalac', DATEPART(year, nc.DatumUzimanja) AS 'Godina', COUNT(DatumUzimanja) AS 
- 'Broj iznajmljenih',(COUNT(DatumUzimanja) - COUNT(DatumVracanja)) AS 'Nije vraceno'
-FROM Citalac AS c, Na_Citanju AS nc
-WHERE c.CitalacID = nc.CitalacID AND c.CitalacID = @id AND DATEPART(year, nc.DatumUzimanja) BETWEEN @od AND @do
-GROUP BY DATEPART(year, nc.DatumUzimanja), c.Ime, c.Prezime";
+            cmd.CommandText = @"SELECT CONCAT(c.Ime, ' ', c.Prezime) AS 'Citalac', 
+                                DATEPART(year, nc.DatumUzimanja) AS 'Godina', 
+                                COUNT(DatumUzimanja) AS 'Broj iznajmljenih',
+                                (COUNT(DatumUzimanja) - COUNT(DatumVracanja)) AS 'Nije vraceno'
+                                FROM Citalac AS c, Na_Citanju AS nc
+                                WHERE c.CitalacID = nc.CitalacID AND c.CitalacID = @id AND DATEPART(year, nc.DatumUzimanja) BETWEEN @od AND @do
+                                GROUP BY DATEPART(year, nc.DatumUzimanja), c.Ime, c.Prezime";
             cmd.Parameters.AddWithValue("@id", comboBoxCitalac.SelectedValue);
             cmd.Parameters.AddWithValue("@od", dateTimePickerOd.Value.Year);
             cmd.Parameters.AddWithValue("@do", dateTimePickerDo.Value.Year);

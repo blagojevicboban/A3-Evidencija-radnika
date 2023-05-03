@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -40,7 +40,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonJMBG = new System.Windows.Forms.Button();
-            this.buttonBoxUpisi = new System.Windows.Forms.Button();
+            this.buttonUpisi = new System.Windows.Forms.Button();
             this.textBoxAdresa = new System.Windows.Forms.TextBox();
             this.textBoxPrezime = new System.Windows.Forms.TextBox();
             this.textBoxIme = new System.Windows.Forms.TextBox();
@@ -84,14 +84,13 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1193, 480);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Controls.Add(this.buttonJMBG);
-            this.tabPage1.Controls.Add(this.buttonBoxUpisi);
+            this.tabPage1.Controls.Add(this.buttonUpisi);
             this.tabPage1.Controls.Add(this.textBoxAdresa);
             this.tabPage1.Controls.Add(this.textBoxPrezime);
             this.tabPage1.Controls.Add(this.textBoxIme);
@@ -171,21 +170,21 @@
             this.buttonJMBG.UseVisualStyleBackColor = false;
             this.buttonJMBG.Click += new System.EventHandler(this.tbIzadji_Click);
             // 
-            // buttonBoxUpisi
+            // buttonUpisi
             // 
-            this.buttonBoxUpisi.BackColor = System.Drawing.Color.White;
-            this.buttonBoxUpisi.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.buttonBoxUpisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBoxUpisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.buttonBoxUpisi.ForeColor = System.Drawing.Color.Red;
-            this.buttonBoxUpisi.Location = new System.Drawing.Point(57, 287);
-            this.buttonBoxUpisi.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonBoxUpisi.Name = "buttonBoxUpisi";
-            this.buttonBoxUpisi.Size = new System.Drawing.Size(308, 50);
-            this.buttonBoxUpisi.TabIndex = 2;
-            this.buttonBoxUpisi.Text = "Upiši čitaoca";
-            this.buttonBoxUpisi.UseVisualStyleBackColor = false;
-            this.buttonBoxUpisi.Click += new System.EventHandler(this.tbUpisi_Click);
+            this.buttonUpisi.BackColor = System.Drawing.Color.White;
+            this.buttonUpisi.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.buttonUpisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUpisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.buttonUpisi.ForeColor = System.Drawing.Color.Red;
+            this.buttonUpisi.Location = new System.Drawing.Point(57, 287);
+            this.buttonUpisi.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonUpisi.Name = "buttonUpisi";
+            this.buttonUpisi.Size = new System.Drawing.Size(308, 50);
+            this.buttonUpisi.TabIndex = 2;
+            this.buttonUpisi.Text = "Upiši čitaoca";
+            this.buttonUpisi.UseVisualStyleBackColor = false;
+            this.buttonUpisi.Click += new System.EventHandler(this.buttonUpisi_Click);
             // 
             // textBoxAdresa
             // 
@@ -334,18 +333,18 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Right;
             this.chart1.Location = new System.Drawing.Point(590, 4);
             this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Name = "Series1";
-            series4.ChartArea = "ChartArea1";
-            series4.Name = "Series2";
-            this.chart1.Series.Add(series3);
-            this.chart1.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "Series2";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(591, 443);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
@@ -479,7 +478,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button buttonJMBG;
-        private System.Windows.Forms.Button buttonBoxUpisi;
+        private System.Windows.Forms.Button buttonUpisi;
         private System.Windows.Forms.TextBox textBoxAdresa;
         private System.Windows.Forms.TextBox textBoxPrezime;
         private System.Windows.Forms.TextBox textBoxIme;

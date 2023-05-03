@@ -22,12 +22,13 @@ namespace ZadatakA1
         private void Form1_Load(object sender, EventArgs e)
         {
             if (textBoxId.Text == "")
-                buttonBoxUpisi.Enabled = false;
-
-            PopuniListview();
+                buttonUpisi.Enabled = false;
+            OsveziListview();
+            OsveziComboCitalaca();
+            richTextBox1.LoadFile("dokum.rtf");
         }
 
-        private void PopuniListview()
+        private void OsveziListview()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
@@ -38,7 +39,7 @@ namespace ZadatakA1
             {
                 da.Fill(dt);
                 listView1.Items.Clear();
-                foreach(DataRow row in dt.Rows)
+                foreach (DataRow row in dt.Rows)
                 {
                     ListViewItem li = new ListViewItem(row[0].ToString());
                     li.SubItems.Add(row[1].ToString());
@@ -48,7 +49,7 @@ namespace ZadatakA1
                     listView1.Items.Add(li);
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Doslo je do greske!");
             }
@@ -59,7 +60,7 @@ namespace ZadatakA1
             }
         }
 
-        private void PopuniTB()
+        private void textBoxId_TextChanged(object sender, EventArgs e)
         {
             if (textBoxId.Text == "")
             {
@@ -86,7 +87,7 @@ namespace ZadatakA1
             try
             {
                 da.Fill(dt);
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     textBoxJMBG.Text = dt.Rows[0][1].ToString();
                     textBoxIme.Text = dt.Rows[0][2].ToString();
@@ -98,7 +99,7 @@ namespace ZadatakA1
                     clearData();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -109,25 +110,20 @@ namespace ZadatakA1
             }
         }
 
-        private void textBoxId_TextChanged(object sender, EventArgs e)
-        {
-            PopuniTB();
-        }
-
         private void clearData()
         {
             textBoxIme.Text = "";
             textBoxJMBG.Text = "";
             textBoxPrezime.Text = "";
             textBoxAdresa.Text = "";
-            buttonBoxUpisi.Enabled = true;
+            buttonUpisi.Enabled = true;
         }
 
-        private void tbUpisi_Click(object sender, EventArgs e)
+        private void buttonUpisi_Click(object sender, EventArgs e)
         {
             if (textBoxId.Text != "")
             {
-                buttonBoxUpisi.Enabled = false;
+                buttonUpisi.Enabled = false;
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "INSERT INTO Citalac(CitalacID, MaticniBroj, Ime, Prezime, Adresa) VALUES (@id, @jmbg, @ime, @prezime, @adresa)";
@@ -136,39 +132,38 @@ namespace ZadatakA1
                 cmd.Parameters.AddWithValue("@ime", textBoxIme.Text);
                 cmd.Parameters.AddWithValue("@prezime", textBoxPrezime.Text);
                 cmd.Parameters.AddWithValue("@adresa", textBoxAdresa.Text);
-            try
-            {
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                PopuniListview();
-                foreach (ListViewItem li in listView1.Items)
+                try
                 {
-                    if (li.SubItems[0].Text == textBoxId.Text)
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    OsveziListview();
+                    foreach (ListViewItem li in listView1.Items)
                     {
-                        li.Selected = true;
+                        if (li.SubItems[0].Text == textBoxId.Text)
+                        {
+                            li.Selected = true;
+                        }
                     }
-                }
-                if (MessageBox.Show("Uspesan unos") == DialogResult.OK)
-                {
+                    MessageBox.Show("Uspesan unos");
                     clearData();
+                    OsveziComboCitalaca();
                     textBoxId.Text = "";
                 }
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Čitalac sa tim brojem članske karte postoji u evidenciji" );
-                textBoxId.Focus();
-                return;
-            }
-            finally
-            {
-                cmd.Dispose();
-            }
+                catch (Exception)
+                {
+                    MessageBox.Show("Čitalac sa tim brojem članske karte postoji u evidenciji");
+                    textBoxId.Focus();
+                    return;
+                }
+                finally
+                {
+                    cmd.Dispose();
+                }
             }
             else
-                {
+            {
                 MessageBox.Show("Morate da unesete broj članske karte");
-                }
+            }
         }
 
         private void tbIzadji_Click(object sender, EventArgs e)
@@ -181,48 +176,41 @@ namespace ZadatakA1
             this.Close();
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void OsveziComboCitalaca()
         {
-            if(tabControl1.SelectedIndex == 1)
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "SELECT CitalacID, CONCAT(CitalacID,'-',Ime,' ',Prezime) AS prikaz FROM Citalac";
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            try
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT CitalacID, CONCAT(CitalacID,'-',Ime,' ',Prezime) AS prikaz FROM Citalac";
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                try
-                {
-                    da.Fill(dt);
-                    comboBoxCitalac.DataSource = dt;
-                    comboBoxCitalac.DisplayMember = "prikaz";
-                    comboBoxCitalac.ValueMember = "CitalacID";
-                    comboBoxCitalac.Text = "";
-                    comboBoxCitalac.SelectedValue = -1;
+                da.Fill(dt);
+                comboBoxCitalac.DataSource = dt;
+                comboBoxCitalac.DisplayMember = "prikaz";
+                comboBoxCitalac.ValueMember = "CitalacID";
+                comboBoxCitalac.Text = "";
+                comboBoxCitalac.SelectedValue = -1;
 
-                }
-                catch
-                {
-                    MessageBox.Show("Doslo je do greske!");
-                }
-                finally
-                {
-                    da.Dispose();
-                    cmd.Dispose();
-                }
             }
-            else if(tabControl1.SelectedIndex == 2)
+            catch
             {
-                richTextBox1.LoadFile(@"D:\Matura\ZadatakA1\ZadatakA1\dokum.rtf");
+                MessageBox.Show("Doslo je do greske!");
+            }
+            finally
+            {
+                da.Dispose();
+                cmd.Dispose();
             }
         }
 
         private void buttonPrikazi_Click(object sender, EventArgs e)
         {
-            if(comboBoxCitalac.Text  != "")
+            if (comboBoxCitalac.Text != "")
             {
                 SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
-            cmd.CommandText = @"SELECT CONCAT(c.Ime, ' ', c.Prezime) AS 'Citalac', 
+                cmd.Connection = conn;
+                cmd.CommandText = @"SELECT CONCAT(c.Ime, ' ', c.Prezime) AS 'Citalac', 
                                 DATEPART(year, nc.DatumUzimanja) AS 'Godina', 
                                 COUNT(DatumUzimanja) AS 'Broj iznajmljenih',
                                 (COUNT(DatumUzimanja) - COUNT(DatumVracanja)) AS 'Nije vraceno'
@@ -231,32 +219,32 @@ namespace ZadatakA1
                                 AND c.CitalacID = @id 
                                 AND DATEPART(year, nc.DatumUzimanja) BETWEEN @od AND @do
                                 GROUP BY DATEPART(year, nc.DatumUzimanja), c.Ime, c.Prezime";
-            cmd.Parameters.AddWithValue("@id", comboBoxCitalac.SelectedValue);
-            cmd.Parameters.AddWithValue("@od", dateTimePickerOd.Value.Year);
-            cmd.Parameters.AddWithValue("@do", dateTimePickerDo.Value.Year);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            try
-            {
-                da.Fill(dt);
-                dataGridView1.DataSource = dt;
-                chart1.DataSource = dt;
-                chart1.Series[0].XValueMember = "Godina";
-                chart1.Series[0].YValueMembers = "Broj iznajmljenih";
-                chart1.Series[1].XValueMember = "Godina";
-                chart1.Series[1].YValueMembers = "Nije vraceno";
-                chart1.Series[0].IsValueShownAsLabel = false;
-                chart1.Series[1].IsValueShownAsLabel = false;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                da.Dispose();
-                cmd.Dispose();
-            }
+                cmd.Parameters.AddWithValue("@id", comboBoxCitalac.SelectedValue);
+                cmd.Parameters.AddWithValue("@od", dateTimePickerOd.Value.Year);
+                cmd.Parameters.AddWithValue("@do", dateTimePickerDo.Value.Year);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                try
+                {
+                    da.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                    chart1.DataSource = dt;
+                    chart1.Series[0].XValueMember = "Godina";
+                    chart1.Series[0].YValueMembers = "Broj iznajmljenih";
+                    chart1.Series[1].XValueMember = "Godina";
+                    chart1.Series[1].YValueMembers = "Nije vraceno";
+                    chart1.Series[0].IsValueShownAsLabel = false;
+                    chart1.Series[1].IsValueShownAsLabel = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    da.Dispose();
+                    cmd.Dispose();
+                }
             }
             else
             {
@@ -264,6 +252,6 @@ namespace ZadatakA1
                 comboBoxCitalac.Focus();
                 return;
             }
-    }
+        }
     }
 }

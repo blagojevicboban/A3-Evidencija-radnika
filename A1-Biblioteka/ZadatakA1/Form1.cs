@@ -49,9 +49,9 @@ namespace ZadatakA1
                     listView1.Items.Add(li);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Doslo je do greske!");
+                MessageBox.Show("Doslo je do greske! " + ex.Message);
             }
             finally
             {
@@ -136,16 +136,8 @@ namespace ZadatakA1
                 {
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    OsveziListview();
-                    foreach (ListViewItem li in listView1.Items)
-                    {
-                        if (li.SubItems[0].Text == textBoxId.Text)
-                        {
-                            li.Selected = true;
-                        }
-                    }
                     MessageBox.Show("Uspesan unos");
-                    clearData();
+                    OsveziListview();
                     OsveziComboCitalaca();
                     textBoxId.Text = "";
                 }

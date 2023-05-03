@@ -24,10 +24,10 @@ namespace ZadatakA1
             if (textBoxId.Text == "")
                 buttonBoxUpisi.Enabled = false;
 
-            popuniListview();
+            PopuniListview();
         }
 
-        private void popuniListview()
+        private void PopuniListview()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
@@ -59,28 +59,7 @@ namespace ZadatakA1
             }
         }
 
-        private void proveriTB()
-        {
-            if (textBoxId.Text == "")
-            {
-                clearData();
-                return;
-            }
-            try
-            {
-                int.Parse(textBoxId.Text);
-
-            }
-            catch
-            {
-                MessageBox.Show ("Unesite ispravnu šifru");
-                textBoxId.Text = "";
-                buttonBoxUpisi.Enabled = false;
-                return;
-            }
-        }
-
-        private void popuniTB()
+        private void PopuniTB()
         {
             if (textBoxId.Text == "")
             {
@@ -130,9 +109,9 @@ namespace ZadatakA1
             }
         }
 
-        private void tbId_TextChanged(object sender, EventArgs e)
+        private void textBoxId_TextChanged(object sender, EventArgs e)
         {
-            popuniTB();
+            PopuniTB();
         }
 
         private void clearData()
@@ -161,7 +140,7 @@ namespace ZadatakA1
             {
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                popuniListview();
+                PopuniListview();
                 foreach (ListViewItem li in listView1.Items)
                 {
                     if (li.SubItems[0].Text == textBoxId.Text)
@@ -248,7 +227,9 @@ namespace ZadatakA1
                                 COUNT(DatumUzimanja) AS 'Broj iznajmljenih',
                                 (COUNT(DatumUzimanja) - COUNT(DatumVracanja)) AS 'Nije vraceno'
                                 FROM Citalac AS c, Na_Citanju AS nc
-                                WHERE c.CitalacID = nc.CitalacID AND c.CitalacID = @id AND DATEPART(year, nc.DatumUzimanja) BETWEEN @od AND @do
+                                WHERE c.CitalacID = nc.CitalacID 
+                                AND c.CitalacID = @id 
+                                AND DATEPART(year, nc.DatumUzimanja) BETWEEN @od AND @do
                                 GROUP BY DATEPART(year, nc.DatumUzimanja), c.Ime, c.Prezime";
             cmd.Parameters.AddWithValue("@id", comboBoxCitalac.SelectedValue);
             cmd.Parameters.AddWithValue("@od", dateTimePickerOd.Value.Year);

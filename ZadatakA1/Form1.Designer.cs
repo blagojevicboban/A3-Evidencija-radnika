@@ -226,7 +226,7 @@
             this.textBoxId.Name = "textBoxId";
             this.textBoxId.Size = new System.Drawing.Size(144, 22);
             this.textBoxId.TabIndex = 1;
-            this.textBoxId.TextChanged += new System.EventHandler(this.tbId_TextChanged);
+            this.textBoxId.TextChanged += new System.EventHandler(this.textBoxId_TextChanged);
             // 
             // label5
             // 

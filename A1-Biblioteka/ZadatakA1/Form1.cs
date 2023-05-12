@@ -121,7 +121,7 @@ namespace ZadatakA1
 
         private void buttonUpisi_Click(object sender, EventArgs e)
         {
-            if (textBoxId.Text != "")
+            if (textBoxId.Text != "" || textBoxJMBG.TEXT="" || textBoxIme.Text="" || textBoxPrezime.Text="" || textBoxAdresa.Text="")
             {
                 buttonUpisi.Enabled = false;
                 SqlCommand cmd = new SqlCommand();
@@ -156,6 +156,13 @@ namespace ZadatakA1
             {
                 MessageBox.Show("Morate da unesete broj članske karte");
             }
+        }
+        private void Oznaci()
+        {
+            listView1.Focus();
+            var item=this.listView1.FindItemWithText(textBoxId.Text);
+            listView1.FullRowSelect = true;
+            listView1.Items[item.Index].Selected = true;
         }
 
         private void tbIzadji_Click(object sender, EventArgs e)

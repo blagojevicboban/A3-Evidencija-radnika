@@ -141,5 +141,28 @@ namespace ZADATAKA3
             Form2 foa = new Form2();
             foa.ShowDialog();
         }
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string sqlUpit = "SELECT YEAR(p.DatumPocetka) AS Godina, COUNT(DISTINCT p.ProjekatID) AS 'Broj projekata', COUNT(DISTINCT a.RadnikID) AS 'Broj radnika'  FROM Projekat AS p, Angazman AS a WHERE p.ProjekatID = a.ProjekatID AND DATEDIFF(year,p.DatumPocetka,GETDATE())<@starost GROUP BY YEAR(p.DatumPocetka) ORDER BY YEAR(p.DatumPocetka)";
+                conn.Open();
+                SqlCommand komanda = new SqlCommand(sqlUpit, conn);
+                komanda.Parameters.AddWithValue("@starost", numericUpDown1.Value);
+                SqlDataAdapter adapter = new SqlDataAdapter(komanda);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                conn.Close();
+                dataGridView1.DataSource = dt;
+                chart1.DataSource = dt;
+                chart1.Series[0].XValueMember = "Godina";
+                chart1.Series[0].YValueMembers = "Broj radnika";
+                chart1.Series[0].IsValueShownAsLabel = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Došlo je do greške");
+            }
+        }
     }
 }

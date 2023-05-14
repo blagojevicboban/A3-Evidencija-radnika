@@ -1,168 +1,150 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.IO;
 
-namespace ZADATAKA3
+namespace A3
 {
     public partial class Form1 : Form
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\PC-10-10\Documents\Snezana\ZADATAKA3\A3.mdf;Integrated Security=True");
-       
+       SqlConnection konekcija = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\A3.mdf;Integrated Security=True");
 
         public Form1()
         {
             InitializeComponent();
-           
-
         }
-        private void OsveziList()
+
+        private void PrikaziPodLView()
         {
-            SqlCommand cmd = new SqlCommand("select * from Projekat", conn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+            listView1.Items.Clear();
             try
             {
-                da.Fill(dt);
-                listView1.Items.Clear();
-                foreach (DataRow row in dt.Rows)
+                konekcija.Open();
+                DataTable dataTable = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Projekat", konekcija);
+                adapter.Fill(dataTable);
+                konekcija.Close();
+                listView1.FullRowSelect = true;
+                foreach (DataRow row in dataTable.Rows)
                 {
-                    ListViewItem li = new ListViewItem(row[0].ToString());
-                    li.SubItems.Add(row[1].ToString());
-                    li.SubItems.Add(((DateTime)row[2]).ToString("dd.MM.yyyy"));
-                    li.SubItems.Add(row[3].ToString());
-                    li.SubItems.Add(row[4].ToString());
-                    li.SubItems.Add(row[5].ToString());
-                    listView1.Items.Add(li);
+                    ListViewItem listItem = new ListViewItem(row["ProjekatID"].ToString());
+                    listItem.SubItems.Add(row["Naziv"].ToString());
+                    var datpoc = DateTime.Parse(row["DatumPocetka"].ToString());
+                    listItem.SubItems.Add(datpoc.ToString("dd.MM.yyyy"));
+                    listItem.SubItems.Add(row["Budzet"].ToString());
+                    listItem.SubItems.Add(row["ProjekatZavrsen"].ToString());
+                    listItem.SubItems.Add(row["Opis"].ToString());
+                    listView1.Items.Add(listItem); 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Doslo je do greske");
-            }
-            finally
-            {
-                da.Dispose();
-                cmd.Dispose();
+                MessageBox.Show(ex.Message);
             }
         }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            tbSifra.Text = listView1.SelectedItems[0].SubItems[0].Text;
+            tbNaziv.Text = listView1.SelectedItems[0].SubItems[1].Text;
+            tbDatPoc.Text = listView1.SelectedItems[0].SubItems[2].Text;
+            tbBudzet.Text = listView1.SelectedItems[0].SubItems[3].Text;
+            chbZavrsen.Checked  = Convert.ToBoolean(listView1.SelectedItems[0].SubItems[4].Text);
+            tbOpis.Text = listView1.SelectedItems[0].SubItems[5].Text;
+
+        }
+
+
+        private void ClearData()
+        {
+            tbSifra.Text = "";
+            tbNaziv.Text = "";
+            tbDatPoc.Text = "";
+            tbBudzet.Text = "";
+            chbZavrsen.Checked = false;
+            tbOpis.Text = "";
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            OsveziList();
-        }
-        private void Clear()
-        {
-            textBoxSifra.Text = "";
-            textBoxOpis.Text = "";
-            textBoxBudzet.Text = "";
-            textBoxDatum.Text = "";
-            textBoxNaziv.Text = "";
-            checkBox1.Checked = false;
+            PrikaziPodLView();
         }
 
-        private void buttonIzadji_Click(object sender, EventArgs e)
+        private void btnObrisi_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
+            {
+                if (tbSifra.Text!="" )
+                {
+                    DateTime datPoc = DateTime.ParseExact(tbDatPoc.Text, "dd.MM.yyyy", null);
+                    DateTime danDat = DateTime.Today;
+                    int starost = (danDat.Year - datPoc.Year);
+                    Boolean zavrsen = Convert.ToBoolean(chbZavrsen.Checked);
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count>0)
-            {
-                textBoxSifra.Text = listView1.SelectedItems[0].SubItems[0].Text;
-                textBoxNaziv.Text = listView1.SelectedItems[0].SubItems[1].Text;
-                textBoxDatum.Text = listView1.SelectedItems[0].SubItems[2].Text;
-                textBoxBudzet.Text = listView1.SelectedItems[0].SubItems[3].Text;
-                if (listView1.SelectedItems[0].SubItems[4].Text == "True")
-                    checkBox1.Checked = true;
-                else
-                    checkBox1.Checked = false;
-                textBoxOpis.Text = listView1.SelectedItems[0].SubItems[5].Text;
-            }
-            else
-            {
-                Clear();
-            }
-        }
+                    if (starost >= 5 && zavrsen == true)
 
-        private void buttonObrisi_Click(object sender, EventArgs e)
-        {
-            if (textBoxSifra.Text != "")
-            {
-                DateTime datPoc = DateTime.ParseExact(textBoxDatum.Text, "dd.MM.yyyy", null);
-                DateTime danDat = DateTime.Now;
-             
-                if ((danDat.Year - datPoc.Year) >= 5 && checkBox1.Checked == true)
                     try
                     {
-            
-                        SqlCommand command = new SqlCommand("DELETE FROM Projekat WHERE ProjekatID = @Id", conn);
-                        conn.Open();
-                        command.Parameters.AddWithValue("@Id", Convert.ToInt32(textBoxSifra.Text));
+                        SqlCommand command = new SqlCommand("DELETE FROM Projekat WHERE ProjekatID = @Id", konekcija);
+                        konekcija.Open();
+                        command.Parameters.AddWithValue("@Id", Convert.ToInt32(tbSifra.Text));
                         command.ExecuteNonQuery();
-                        conn.Close();
-                        OsveziList();
+                        konekcija.Close();
+
+                        PrikaziPodLView();
                         UpisiUtxt();
-                        Clear();
+                        ClearData();
                     }
                     catch (Exception)
                     {
                         MessageBox.Show("Došlo je do greške pri brisanju podataka");
                     }
+                    else
+                    {
+                        MessageBox.Show("Ovaj projekat ne zadovoljava uslove za brisanje");
+                    }
+                }
                 else
                 {
-                    MessageBox.Show("Ovaj projekat ne zadovoljava uslove za brisanje");
+                    MessageBox.Show("Izaberite projekat koji brišete");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Izaberite projekat koji brišete");
-            }
-        }
-        private void UpisiUtxt()
-        {
-            string fileName = String.Format("log_{0}_{1}_{2}.txt", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-            string path = @"..\..\" + fileName; // folder projekta PUTANJA
-            using (StreamWriter sw = File.AppendText(path))
-            {
-                sw.WriteLine(String.Format("{0} - {1}", textBoxSifra.Text, textBoxNaziv.Text));
+
             }
         }
 
+        private void UpisiUtxt()
+        {
+
+            string fileName = String.Format("log_{0}_{1}_{2}.txt", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
+            
+            //Umesto d:\ upisati putanju do radnog foldera
+            string path = @"d:\"+ fileName;
+
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine(String.Format("{0} - {1}", tbSifra.Text, tbNaziv.Text));
+            }
+
+        }
+
+
+
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Form2 foa = new Form2();
-            foa.ShowDialog();
+            Statistika  frm = new Statistika ();
+            frm.Show();
         }
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+
+        private void btnIzadji_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string sqlUpit = "SELECT YEAR(p.DatumPocetka) AS Godina, COUNT(DISTINCT p.ProjekatID) AS 'Broj projekata', COUNT(DISTINCT a.RadnikID) AS 'Broj radnika'  FROM Projekat AS p, Angazman AS a WHERE p.ProjekatID = a.ProjekatID AND DATEDIFF(year,p.DatumPocetka,GETDATE())<@starost GROUP BY YEAR(p.DatumPocetka) ORDER BY YEAR(p.DatumPocetka)";
-                conn.Open();
-                SqlCommand komanda = new SqlCommand(sqlUpit, conn);
-                komanda.Parameters.AddWithValue("@starost", numericUpDown1.Value);
-                SqlDataAdapter adapter = new SqlDataAdapter(komanda);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                conn.Close();
-                dataGridView1.DataSource = dt;
-                chart1.DataSource = dt;
-                chart1.Series[0].XValueMember = "Godina";
-                chart1.Series[0].YValueMembers = "Broj radnika";
-                chart1.Series[0].IsValueShownAsLabel = true;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Došlo je do greške");
-            }
+            UpisiUtxt();
         }
     }
 }

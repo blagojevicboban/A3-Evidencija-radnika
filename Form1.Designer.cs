@@ -28,151 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxSifra = new System.Windows.Forms.TextBox();
-            this.textBoxNaziv = new System.Windows.Forms.TextBox();
-            this.textBoxDatumPoc = new System.Windows.Forms.TextBox();
-            this.textBoxBudzet = new System.Windows.Forms.TextBox();
-            this.checkBoxZavrsen = new System.Windows.Forms.CheckBox();
-            this.textBoxOpis = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.buttonObrisi = new System.Windows.Forms.Button();
-            this.buttonIzadji = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tbSifra = new System.Windows.Forms.TextBox();
+            this.tbNaziv = new System.Windows.Forms.TextBox();
+            this.tbDatPoc = new System.Windows.Forms.TextBox();
+            this.tbBudzet = new System.Windows.Forms.TextBox();
+            this.chbZavrsen = new System.Windows.Forms.CheckBox();
+            this.tbOpis = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnObrisi = new System.Windows.Forms.Button();
+            this.btnIzadji = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1018, 47);
+            this.toolStrip1.Size = new System.Drawing.Size(1279, 57);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.Image = global::A3.Properties.Resources.charts;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(171, 44);
-            this.toolStripButton1.Text = "Pregled projekata";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(76, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Šifra";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(69, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Naziv";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 127);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 16);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Datum početka";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(69, 217);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 16);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Opis";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(54, 185);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 16);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Završen";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(62, 154);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 16);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Budžet";
-            // 
-            // textBoxSifra
-            // 
-            this.textBoxSifra.Location = new System.Drawing.Point(152, 66);
-            this.textBoxSifra.Name = "textBoxSifra";
-            this.textBoxSifra.Size = new System.Drawing.Size(100, 22);
-            this.textBoxSifra.TabIndex = 7;
-            // 
-            // textBoxNaziv
-            // 
-            this.textBoxNaziv.Location = new System.Drawing.Point(152, 94);
-            this.textBoxNaziv.Name = "textBoxNaziv";
-            this.textBoxNaziv.Size = new System.Drawing.Size(205, 22);
-            this.textBoxNaziv.TabIndex = 8;
-            // 
-            // textBoxDatumPoc
-            // 
-            this.textBoxDatumPoc.Location = new System.Drawing.Point(152, 122);
-            this.textBoxDatumPoc.Name = "textBoxDatumPoc";
-            this.textBoxDatumPoc.Size = new System.Drawing.Size(141, 22);
-            this.textBoxDatumPoc.TabIndex = 9;
-            // 
-            // textBoxBudzet
-            // 
-            this.textBoxBudzet.Location = new System.Drawing.Point(152, 150);
-            this.textBoxBudzet.Name = "textBoxBudzet";
-            this.textBoxBudzet.Size = new System.Drawing.Size(205, 22);
-            this.textBoxBudzet.TabIndex = 10;
-            // 
-            // checkBoxZavrsen
-            // 
-            this.checkBoxZavrsen.AutoSize = true;
-            this.checkBoxZavrsen.Location = new System.Drawing.Point(152, 185);
-            this.checkBoxZavrsen.Name = "checkBoxZavrsen";
-            this.checkBoxZavrsen.Size = new System.Drawing.Size(18, 17);
-            this.checkBoxZavrsen.TabIndex = 11;
-            this.checkBoxZavrsen.UseVisualStyleBackColor = true;
-            // 
-            // textBoxOpis
-            // 
-            this.textBoxOpis.Location = new System.Drawing.Point(152, 217);
-            this.textBoxOpis.Multiline = true;
-            this.textBoxOpis.Name = "textBoxOpis";
-            this.textBoxOpis.Size = new System.Drawing.Size(205, 137);
-            this.textBoxOpis.TabIndex = 12;
+            this.toolStripButton1.Size = new System.Drawing.Size(173, 54);
+            this.toolStripButton1.Text = "Pregled projekta";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // listView1
             // 
@@ -184,32 +84,14 @@
             this.columnHeader5,
             this.columnHeader6});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(390, 66);
+            this.listView1.Location = new System.Drawing.Point(449, 94);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(595, 288);
-            this.listView1.TabIndex = 13;
+            this.listView1.Size = new System.Drawing.Size(771, 381);
+            this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // buttonObrisi
-            // 
-            this.buttonObrisi.Location = new System.Drawing.Point(748, 376);
-            this.buttonObrisi.Name = "buttonObrisi";
-            this.buttonObrisi.Size = new System.Drawing.Size(101, 51);
-            this.buttonObrisi.TabIndex = 14;
-            this.buttonObrisi.Text = "Obriši";
-            this.buttonObrisi.UseVisualStyleBackColor = true;
-            this.buttonObrisi.Click += new System.EventHandler(this.buttonObrisi_Click);
-            // 
-            // buttonIzadji
-            // 
-            this.buttonIzadji.Location = new System.Drawing.Point(884, 376);
-            this.buttonIzadji.Name = "buttonIzadji";
-            this.buttonIzadji.Size = new System.Drawing.Size(101, 51);
-            this.buttonIzadji.TabIndex = 15;
-            this.buttonIzadji.Text = "Izađi";
-            this.buttonIzadji.UseVisualStyleBackColor = true;
+            this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             // 
             // columnHeader1
             // 
@@ -218,49 +100,190 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Naziv";
-            this.columnHeader2.Width = 188;
+            this.columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Datum pocetka";
-            this.columnHeader3.Width = 92;
+            this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Budzet";
-            this.columnHeader4.Width = 87;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Zavrsen";
-            this.columnHeader5.Width = 77;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Opis";
-            this.columnHeader6.Width = 117;
+            this.columnHeader6.Width = 120;
+            // 
+            // tbSifra
+            // 
+            this.tbSifra.Location = new System.Drawing.Point(185, 102);
+            this.tbSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSifra.Name = "tbSifra";
+            this.tbSifra.Size = new System.Drawing.Size(75, 22);
+            this.tbSifra.TabIndex = 2;
+            // 
+            // tbNaziv
+            // 
+            this.tbNaziv.Location = new System.Drawing.Point(185, 153);
+            this.tbNaziv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNaziv.Name = "tbNaziv";
+            this.tbNaziv.Size = new System.Drawing.Size(229, 22);
+            this.tbNaziv.TabIndex = 3;
+            // 
+            // tbDatPoc
+            // 
+            this.tbDatPoc.Location = new System.Drawing.Point(185, 198);
+            this.tbDatPoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbDatPoc.Name = "tbDatPoc";
+            this.tbDatPoc.Size = new System.Drawing.Size(173, 22);
+            this.tbDatPoc.TabIndex = 4;
+            // 
+            // tbBudzet
+            // 
+            this.tbBudzet.Location = new System.Drawing.Point(185, 250);
+            this.tbBudzet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbBudzet.Name = "tbBudzet";
+            this.tbBudzet.Size = new System.Drawing.Size(229, 22);
+            this.tbBudzet.TabIndex = 5;
+            // 
+            // chbZavrsen
+            // 
+            this.chbZavrsen.AutoSize = true;
+            this.chbZavrsen.Location = new System.Drawing.Point(191, 305);
+            this.chbZavrsen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chbZavrsen.Name = "chbZavrsen";
+            this.chbZavrsen.Size = new System.Drawing.Size(18, 17);
+            this.chbZavrsen.TabIndex = 6;
+            this.chbZavrsen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chbZavrsen.UseVisualStyleBackColor = true;
+            // 
+            // tbOpis
+            // 
+            this.tbOpis.Location = new System.Drawing.Point(185, 351);
+            this.tbOpis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbOpis.Multiline = true;
+            this.tbOpis.Name = "tbOpis";
+            this.tbOpis.Size = new System.Drawing.Size(173, 160);
+            this.tbOpis.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(108, 108);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Šifra";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(100, 159);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Naziv";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(17, 201);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(135, 20);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Datum početka";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(79, 255);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 20);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Budžet";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(67, 303);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 20);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Završen";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(99, 352);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 20);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Opis";
+            // 
+            // btnObrisi
+            // 
+            this.btnObrisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObrisi.Location = new System.Drawing.Point(713, 512);
+            this.btnObrisi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(100, 39);
+            this.btnObrisi.TabIndex = 14;
+            this.btnObrisi.Text = "Obriši";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
+            // 
+            // btnIzadji
+            // 
+            this.btnIzadji.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIzadji.Location = new System.Drawing.Point(916, 511);
+            this.btnIzadji.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIzadji.Name = "btnIzadji";
+            this.btnIzadji.Size = new System.Drawing.Size(100, 39);
+            this.btnIzadji.TabIndex = 15;
+            this.btnIzadji.Text = "Izadji";
+            this.btnIzadji.UseVisualStyleBackColor = true;
+            this.btnIzadji.Click += new System.EventHandler(this.btnIzadji_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1018, 452);
-            this.Controls.Add(this.buttonIzadji);
-            this.Controls.Add(this.buttonObrisi);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.textBoxOpis);
-            this.Controls.Add(this.checkBoxZavrsen);
-            this.Controls.Add(this.textBoxBudzet);
-            this.Controls.Add(this.textBoxDatumPoc);
-            this.Controls.Add(this.textBoxNaziv);
-            this.Controls.Add(this.textBoxSifra);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(1279, 591);
+            this.Controls.Add(this.btnIzadji);
+            this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbOpis);
+            this.Controls.Add(this.chbZavrsen);
+            this.Controls.Add(this.tbBudzet);
+            this.Controls.Add(this.tbDatPoc);
+            this.Controls.Add(this.tbNaziv);
+            this.Controls.Add(this.tbSifra);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Projekat";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -275,18 +298,6 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxSifra;
-        private System.Windows.Forms.TextBox textBoxNaziv;
-        private System.Windows.Forms.TextBox textBoxDatumPoc;
-        private System.Windows.Forms.TextBox textBoxBudzet;
-        private System.Windows.Forms.CheckBox checkBoxZavrsen;
-        private System.Windows.Forms.TextBox textBoxOpis;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -294,8 +305,20 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.Button buttonObrisi;
-        private System.Windows.Forms.Button buttonIzadji;
+        private System.Windows.Forms.TextBox tbSifra;
+        private System.Windows.Forms.TextBox tbNaziv;
+        private System.Windows.Forms.TextBox tbDatPoc;
+        private System.Windows.Forms.TextBox tbBudzet;
+        private System.Windows.Forms.CheckBox chbZavrsen;
+        private System.Windows.Forms.TextBox tbOpis;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnObrisi;
+        private System.Windows.Forms.Button btnIzadji;
     }
 }
 

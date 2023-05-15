@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
@@ -58,9 +52,7 @@ namespace A3
             tbBudzet.Text = listView1.SelectedItems[0].SubItems[3].Text;
             chbZavrsen.Checked  = Convert.ToBoolean(listView1.SelectedItems[0].SubItems[4].Text);
             tbOpis.Text = listView1.SelectedItems[0].SubItems[5].Text;
-
         }
-
 
         private void ClearData()
         {
@@ -70,7 +62,6 @@ namespace A3
             tbBudzet.Text = "";
             chbZavrsen.Checked = false;
             tbOpis.Text = "";
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -115,26 +106,18 @@ namespace A3
                 {
                     MessageBox.Show("Izaberite projekat koji brišete");
                 }
-
             }
         }
 
         private void UpisiUtxt()
         {
-
             string fileName = String.Format("log_{0}_{1}_{2}.txt", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-            
-            //Umesto d:\ upisati putanju do radnog foldera
-            string path = @"d:\"+ fileName;
-
+            string path = fileName;
             using (StreamWriter sw = File.AppendText(path))
             {
                 sw.WriteLine(String.Format("{0} - {1}", tbSifra.Text, tbNaziv.Text));
             }
-
         }
-
-
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {

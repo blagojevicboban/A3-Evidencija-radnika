@@ -93,10 +93,12 @@ namespace ZadatakA1
                     textBoxIme.Text = dt.Rows[0][2].ToString();
                     textBoxPrezime.Text = dt.Rows[0][3].ToString();
                     textBoxAdresa.Text = dt.Rows[0][4].ToString();
+                    buttonUpisi.Enabled=false;
                 }
                 else
                 {
                     clearData();
+                    buttonUpisi.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -121,7 +123,7 @@ namespace ZadatakA1
 
         private void buttonUpisi_Click(object sender, EventArgs e)
         {
-            if (textBoxId.Text != "" || textBoxJMBG.TEXT="" || textBoxIme.Text="" || textBoxPrezime.Text="" || textBoxAdresa.Text="")
+            if (textBoxId.Text != "" && textBoxJMBG.Text != "" && textBoxIme.Text != "" && textBoxPrezime.Text != "" && textBoxAdresa.Text != "")
             {
                 buttonUpisi.Enabled = false;
                 SqlCommand cmd = new SqlCommand();

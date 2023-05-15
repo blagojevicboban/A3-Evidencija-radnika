@@ -65,6 +65,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ERDijagram.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ERDijagram.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +91,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ERDijagram.xsc">
+      <DependentUpon>ERDijagram.xsd</DependentUpon>
+    </None>
+    <None Include="ERDijagram.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ERDijagram.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ERDijagram.xss">
+      <DependentUpon>ERDijagram.xsd</DependentUpon>
+    </None>
     <None Include="dokum.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

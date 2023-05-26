@@ -9,7 +9,6 @@ namespace A3
     public partial class Form1 : Form
     {
        SqlConnection konekcija = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\A3.mdf;Integrated Security=True");
-
         public Form1()
         {
             InitializeComponent();
